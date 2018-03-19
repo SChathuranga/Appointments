@@ -1,0 +1,76 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif
+}
+
+.w3-row-padding img {
+  margin-bottom: 12px
+}
+
+/* Set the width of the sidebar to 120px */
+
+.w3-sidebar {
+  width: 110px;
+  background: #222;
+}
+
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+
+#main {
+  margin-left: 120px
+}
+
+/* Remove margins from "page content" on small screens */
+
+@media only screen and (max-width: 600px) {
+  #main {
+    margin-left: 0
+  }
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: auto;
+  transition: 0.5s;
+  padding-top: 24px;
+}
+
+.sidenav a {
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: relative;
+  top: 0rem;
+  right: 35px;
+  font-size: 60px;
+  margin-left: 75px;
+}
+
+#homepageBody{
+    margin-top:15px;
+    margin-left:15px;
+    background: linear-gradient(135deg, #ce1b28 0%, #111111 74%);
+    opacity: 0.6;
+    height: 100%;
+    display: block;
+    webkit-linear-gradientidth: 100%;
+}
