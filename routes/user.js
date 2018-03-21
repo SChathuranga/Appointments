@@ -184,3 +184,25 @@ exports.doctor = function(req, res){
     res.render('doctor');
   }
 };
+//---------------------------------view institutes details after login----------------------------------
+exports.institutelist = function(req, res){
+    var sql = "SELECT * FROM users ORDER BY id DESC";
+    var query = db.query(sql, function(err, rows, results) {
+      if (err) {
+        console.log(err);
+				req.flash('error', err)
+				res.render('instituteview.ejs', {
+					title: 'User List',
+					data: ''
+				})
+			}
+      else {
+        console.log(rows);
+				// render to views/user/list.ejs template file
+				res.render('instituteview', {
+					title: 'User List',
+					data: rows
+				});
+			}
+  });
+};

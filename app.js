@@ -11,6 +11,11 @@ var session = require('express-session');
 var app = express();
 var mysql      = require('mysql');
 var bodyParser=require("body-parser");
+//var flash = require('express-flash');
+//var cookieParser = require('cookie-parser');
+//var methodOverride = require('method-override');
+//var expressValidator = require('express-validator');
+//app.use(expressValidator());
 var connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
@@ -40,6 +45,7 @@ app.use(session({
 // development only
 
 app.get('/', routes.index);//call for main index page
+app.get('/index', routes.index);
 app.get('/signup', user.signup);//call for signup page
 app.post('/signup', user.signup);//call for signup post
 app.get('/login', user.login);//call for login page
@@ -51,7 +57,8 @@ app.get('/institute', user.institute);//call for institute
 app.post('/institute', user.institute);//call for institute post
 app.get('/doctor', user.doctor);//call for doctor addition
 app.post('/doctor', user.doctor);//call for doctor post
-
+app.get('/institutelist', user.institutelist);
+//app.use(flash());
 //Middleware
 app.listen(8080);
 console.log('The magic happens on port 8080');
