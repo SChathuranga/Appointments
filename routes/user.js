@@ -199,7 +199,7 @@ exports.institutelist = function(req, res){
       else {
         console.log(rows);
 				// render to views/user/list.ejs template file
-				res.render('instituteview', {
+				res.render('instituteview.ejs', {
 					title: 'User List',
 					data: rows
 				});
