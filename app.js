@@ -58,6 +58,9 @@ app.post('/institute', user.institute);//call for institute post
 app.get('/doctor', user.doctor);//call for doctor addition
 app.post('/doctor', user.doctor);//call for doctor post
 app.get('/institutelist', user.institutelist);
+app.get('/doctorslist', user.doctorslist);
+app.get('/instituteedit/(:id)', user.instituteedit);
+app.post('instituteedit/(:id)', user.instituteedit);
 //app.use(flash());
 //Middleware
 app.listen(8080);

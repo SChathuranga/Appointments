@@ -31,13 +31,15 @@
 				<li><a href="doctorslist">Doctors View</a></li>
 			</ul>
 		</nav>
-		<h1> View Institutes </h1>
+		<h1> View Doctors </h1>
 		<table width='80%' border=0>
 
 			<tr style='text-align:left; background-color:#CCC'>
-				<th>Institute Name</th>
+				<th>Doctor's Name</th>
 				<th>Address</th>
 				<th>Contact #</th>
+				<th>Email</th>
+				<th>Speciality</th>
 				<th>Action</th>
 			</tr>
 
@@ -51,13 +53,15 @@
 			<% if (data) { %>
 			<% data.forEach(function(user){ %>
 				<tr>
-					<td><%= user.institutename %></td>
+					<td><%= user.doctorname %></td>
 					<td><%= user.address %></td>
 					<td><%= user.contact %></td>
+					<td><%= user.email %></td>
+					<td><%= user.speciality %></td>
 					<td>
 						<div style="float:left">
-							<a href='/instituteedit/<%= user.id %>'>Edit</a> &nbsp;
-							<form method="post" action="/deleteinstitute/<%= user.id %>" style="float:right">
+							<a href='/users/edit/<%= user.id %>'>Edit</a> &nbsp;
+							<form method="post" action="/users/delete/<%= user.id %>" style="float:right">
 								<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
 								<input type="hidden" name="_method" value="DELETE" />
 							</form>
