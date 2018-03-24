@@ -236,7 +236,7 @@ exports.instituteedit = function(req, res){
     });
   }
 };
-//---------------------------------view doctors details after login----------------------------------
+//---------------------------------update institute details after login----------------------------------
 exports.instituteupdate = function(req,res){
   console.log("came to update part");
   var post = req.body;
@@ -262,7 +262,7 @@ exports.instituteupdate = function(req,res){
 
 };
 
-//---------------------------------view doctors details after login----------------------------------
+//---------------------------------delete institute----------------------------------
 exports.deleteinstitute = function(req, res, next){
   var user = {id: req.params.id};
   console.log("came to delete");
@@ -329,7 +329,7 @@ exports.doctoredit = function(req, res){
     });
   }
 };
-//---------------------------------view doctors details after login----------------------------------
+//---------------------------------update doctor details----------------------------------
 exports.doctorupdate = function(req,res){
   console.log("came to update part");
   var post = req.body;
@@ -358,7 +358,7 @@ exports.doctorupdate = function(req,res){
 
 };
 
-//---------------------------------view doctors details after login----------------------------------
+//---------------------------------delete doctor----------------------------------
 exports.deletedoctor = function(req, res, next){
   var user = {id: req.params.id};
   console.log("came to delete");
@@ -371,5 +371,45 @@ exports.deletedoctor = function(req, res, next){
   });
 };
 
+exports.search = function(req, res){
+  var sql = 'SELECT first_name from users where first_name like "%'+req.query.key+'%"';
+  var query = db.query(sql, function(err,rows){
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].first_name);
+      }
+      res.end(JSON.stringify(data));
+  });
+};
 
-//---------------------------------view institutes details after login----------------------------------
+exports.finddoctor = function(req, res){
+  var sql = 'SELECT doctorname from doctors where doctorname like "%'+req.query.key+'%"';
+  var query = db.query(sql, function(err,rows){
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].doctorname);
+      }
+      res.end(JSON.stringify(data));
+  });
+};
+
+exports.findbyspeciality = function(req, res){
+  var sql = 'SELECT speciality from doctors where speciality like "%'+req.query.key+'%"';
+  var query = db.query(sql, function(err,rows){
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].speciality);
+      }
+      res.end(JSON.stringify(data));
+  });
+};
+
+exports.echanneling = function(req,res){
+  res.render('echanneling');
+};
