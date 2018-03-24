@@ -60,7 +60,9 @@ app.post('/doctor', user.doctor);//call for doctor post
 app.get('/institutelist', user.institutelist);
 app.get('/doctorslist', user.doctorslist);
 app.get('/instituteedit/(:id)', user.instituteedit);
-app.post('instituteedit/(:id)', user.instituteedit);
+app.post('/instituteupdate/(:id)', user.instituteupdate);
+app.post('/deleteinstitute/(:id)', user.deleteinstitute);
+
 //app.use(flash());
 //Middleware
 app.listen(8080);

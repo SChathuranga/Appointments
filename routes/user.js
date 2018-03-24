@@ -208,55 +208,72 @@ exports.institutelist = function(req, res){
 };
 //--------------------------------edit institute navigation ----------------------------------------
 
-exports.instituteedit = function(req, res, next){
-    if(req.method == "POST")
+exports.instituteedit = function(req, res){
+
+  if(req.method == "GET") {
+    console.log(req.params.id);
+    var sql = "SELECT * FROM institutes WHERE id = '" + req.params.id + "' ";
+    var query = db.query(sql, function(err, rows, fields) {
+      if(err) throw err
+      // if user not found
+      if (rows.length <= 0) {
+        req.flash('error', 'Institute not found with id = ' + req.params.id);
+        res.redirect('institutelist');
+      }
+      else { // if user found
+        // render to views/user/edit.ejs template file
+        console.log("came here");
+        console.log(rows[0].id);
+        res.render('instituteedit', {
+          title: 'Edit Institute',
+          //data: rows[0],
+          id: rows[0].id,
+          institutename: rows[0].institutename,
+          address: rows[0].address,
+          contact: rows[0].contact
+        });
+      }
+    });
+  }
+};
+//---------------------------------view doctors details after login----------------------------------
+exports.instituteupdate = function(req,res){
+  console.log("came to update part");
+  var post = req.body;
+  var institutename= req.body.institutename;
+  var address= req.body.address;
+  var contact= req.body.contact;
+  console.log(contact);
+  //INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "'
+  var sql = "UPDATE `institutes` SET institutename = '"+ institutename +"', address = '"+ address +"', contact = '"+ contact +"' WHERE id = '"+ req.params.id +"'";
+  var query = db.query(sql, function(err, result) {
+    if(err){
+      console.log(err);
+      message = "Update failed! Try Again!"
+      res.redirect("/institutelist");
+    }
+    else
     {
-      var post = req.body;
-      var institutename= req.body.institutename;
-      var address= req.body.address;
-      var contact= req.body.contact;
+      console.log("sucess");
+      message = "Succesful! Your institute has been created.";
+      res.redirect('/institutelist');
+    } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
+  });
 
-      //INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "'
-      var sql = "UPDATE `institutes` SET institutename = '"+ institutename +"', address = '"+ address +"', contact = '"+ contact +"' WHERE id = '"+ req.params.id +"'";
-      var query = db.query(sql, function(err, result) {
-        if(err){
-          message = "Update failed! Try Again!"
-          res.render("institutelist", {message: message});
-        }
-        else
-        {
-          message = "Succesful! Your institute has been created.";
-          res.render('institutelist',{message: message});
-        } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
-      });
-    }
+};
+
+//---------------------------------view doctors details after login----------------------------------
+exports.deleteinstitute = function(req, res, next){
+  var user = {id: req.params.id};
+  console.log("came to delete");
+  var sql = "DELETE FROM institutes WHERE id = '"+ req.params.id +"'";
+  var query = db.query(sql, function(err,result){
+    if (err) throw err;
     else {
-      console.log(req.params.id);
-  		var sql = "SELECT * FROM institutes WHERE id = '" + req.params.id + "' ";
-      var query = db.query(sql, function(err, rows, fields) {
-  			if(err) throw err
-  			// if user not found
-  			if (rows.length <= 0) {
-  				req.flash('error', 'Institute not found with id = ' + req.params.id);
-  				res.redirect('institutelist');
-  			}
-  			else { // if user found
-  				// render to views/user/edit.ejs template file
-          console.log("came here");
-          console.log(rows[0].id);
-  				res.render('instituteedit', {
-  					title: 'Edit Institute',
-  					//data: rows[0],
-  					id: rows[0].id,
-  					institutename: rows[0].institutename,
-  					address: rows[0].address,
-  					contact: rows[0].contact
-  				});
-  			}
-  		});
+      res.redirect('/institutelist');
     }
-	};
-
+  });
+};
 //---------------------------------view doctors details after login----------------------------------
 exports.doctorslist = function(req, res){
     var sql = "SELECT * FROM doctors ORDER BY id DESC";
