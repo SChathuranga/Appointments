@@ -1,35 +1,77 @@
+<html>
 
+<head>
+	<title>eChanneling - Sign Up</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
-		<form action="/doctorupdate/<%= id %>" method="post" name="form1">
-			<table width="25%" border="0">
-				<tr>
-					<td>Institute Name</td>
-					<td><input type="text" name="doctorname" id="name" value="<%= doctorname %>" /></td>
-				</tr>
-				<tr>
-					<td>Address</td>
-					<td><input type="text" name="address" value="<%= address %>" /></td>
-				</tr>
-				<tr>
-					<td>Contact</td>
-					<td><input type="text" name="contact" value="<%= contact %>" /></td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td><input type="text" name="email" value="<%= email %>" /></td>
-				</tr>
-				<tr>
-					<td>Speciality</td>
-					<td><input type="text" name="speciality" value="<%= speciality %>" /></td>
-				</tr>
-				<tr>
-					<td>Doctor's Registration #</td>
-					<td><input type="text" name="docregid" value="<%= docregid %>" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="Submit" name="Submit" value="Edit" /></td>
-				</tr>
-			</table>
-			<input type="hidden" name="_method" value="PUT" />
-		</form>
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!-- load fontawesome -->
+	<style>
+		body {
+			padding-top: 80px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="home">eChanneling</a>
+		<nav>
+			<a href="#menu">Menu</a>
+		</nav>
+	</header>
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<h2>
+				Institute Edit
+			</h2>
+
+			<div class="col-md-3"></div>
+			<div class="col-md-6 limiter">
+				<div class="wrap-login100">
+					<!-- LOGIN FORM -->
+					<form action="/doctorupdate/<%= id %>" method="post" name="form1"></form>
+						<div class="form-group">
+							Institute Name
+							<input type="text" name="doctorname" id="name" value="<%= doctorname %>" />
+						</div>
+
+						<div class="form-group">
+							Address
+							<input type="text" name="address" value="<%= address %>" />
+						</div>
+
+						<div class="form-group">
+							Contact
+							<input type="text" name="contact" value="<%= contact %>" />
+						</div>
+
+						<div class="form-group">
+							Email
+							<input type="text" name="email" value="<%= email %>" />
+						</div>
+
+						<div class="form-group">
+							Speciality
+							<input type="text" name="speciality" value="<%= speciality %>" />
+						</div>
+
+						<div class="form-group">
+							Doctor's Registration #
+							<input type="text" name="docregid" value="<%= docregid %>" />
+						</div>
+
+						<input type="submit" class="btn btn-warning btn-lg" name="Submit" value="Edit" />
+					</form>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</section>
+</body>
+
+</html>
