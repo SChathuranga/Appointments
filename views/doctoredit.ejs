@@ -1,0 +1,35 @@
+
+
+		<form action="/doctorupdate/<%= id %>" method="post" name="form1">
+			<table width="25%" border="0">
+				<tr>
+					<td>Institute Name</td>
+					<td><input type="text" name="doctorname" id="name" value="<%= doctorname %>" /></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input type="text" name="address" value="<%= address %>" /></td>
+				</tr>
+				<tr>
+					<td>Contact</td>
+					<td><input type="text" name="contact" value="<%= contact %>" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email" value="<%= email %>" /></td>
+				</tr>
+				<tr>
+					<td>Speciality</td>
+					<td><input type="text" name="speciality" value="<%= speciality %>" /></td>
+				</tr>
+				<tr>
+					<td>Doctor's Registration #</td>
+					<td><input type="text" name="docregid" value="<%= docregid %>" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="Submit" name="Submit" value="Edit" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="_method" value="PUT" />
+		</form>

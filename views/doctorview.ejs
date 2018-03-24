@@ -13,7 +13,7 @@
 <body>
 	<!-- Header -->
 		<header id="header">
-			<a class="logo" href="index.html">eChanneling</a>
+			<a class="logo" href="index">eChanneling</a>
 			<nav>
 				<a href="#menu">Menu</a>
 			</nav>
@@ -40,6 +40,7 @@
 				<th>Contact #</th>
 				<th>Email</th>
 				<th>Speciality</th>
+				<th>Doctor's Registration ID</th>
 				<th>Action</th>
 			</tr>
 
@@ -58,10 +59,11 @@
 					<td><%= user.contact %></td>
 					<td><%= user.email %></td>
 					<td><%= user.speciality %></td>
+					<td><%= user.docregid %></td>
 					<td>
 						<div style="float:left">
-							<a href='/users/edit/<%= user.id %>'>Edit</a> &nbsp;
-							<form method="post" action="/users/delete/<%= user.id %>" style="float:right">
+							<a href='/doctoredit/<%= user.id %>'>Edit</a> &nbsp;
+							<form method="post" action="/deletedoctor/<%= user.id %>" style="float:right">
 								<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
 								<input type="hidden" name="_method" value="DELETE" />
 							</form>

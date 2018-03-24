@@ -62,7 +62,9 @@ app.get('/doctorslist', user.doctorslist);
 app.get('/instituteedit/(:id)', user.instituteedit);
 app.post('/instituteupdate/(:id)', user.instituteupdate);
 app.post('/deleteinstitute/(:id)', user.deleteinstitute);
-
+app.get('/doctoredit/(:id)', user.doctoredit);
+app.post('/doctorupdate/(:id)', user.doctorupdate);
+app.post('/deletedoctor/(:id)', user.deletedoctor);
 //app.use(flash());
 //Middleware
 app.listen(8080);

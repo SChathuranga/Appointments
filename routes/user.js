@@ -296,4 +296,80 @@ exports.doctorslist = function(req, res){
 			}
   });
 };
+
+//--------------------------------edit doctor edit navigation ----------------------------------------
+exports.doctoredit = function(req, res){
+
+  if(req.method == "GET") {
+    console.log(req.params.id);
+    var sql = "SELECT * FROM doctors WHERE id = '" + req.params.id + "' ";
+    var query = db.query(sql, function(err, rows, fields) {
+      if(err) throw err
+      // if user not found
+      if (rows.length <= 0) {
+        req.flash('error', 'Doctor not found with id = ' + req.params.id);
+        res.redirect('doctorslist');
+      }
+      else { // if user found
+        // render to views/user/edit.ejs template file
+        console.log("came here");
+        console.log(rows[0].id);
+        res.render('doctoredit', {
+          title: 'Edit Doctor',
+          //data: rows[0],
+          id: rows[0].id,
+          doctorname: rows[0].doctorname,
+          address: rows[0].address,
+          contact: rows[0].contact,
+          email: rows[0].email,
+          speciality: rows[0].speciality,
+          docregid: rows[0].docregid
+        });
+      }
+    });
+  }
+};
+//---------------------------------view doctors details after login----------------------------------
+exports.doctorupdate = function(req,res){
+  console.log("came to update part");
+  var post = req.body;
+  var doctorname= req.body.doctorname;
+  var address= req.body.address;
+  var contact= req.body.contact;
+  var email = req.body.email;
+  var speciality = req.body.speciality;
+  var docregid = req.body.docregid;
+  console.log(contact);
+  //INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "'
+  var sql = "UPDATE `doctors` SET doctorname = '"+ doctorname +"', address = '"+ address +"', contact = '"+ contact +"', email = '"+ email +"', speciality = '"+ speciality +"', docregid = '"+ docregid +"' WHERE id = '"+ req.params.id +"'";
+  var query = db.query(sql, function(err, result) {
+    if(err){
+      console.log(err);
+      message = "Update failed! Try Again!"
+      res.redirect("/doctorslist");
+    }
+    else
+    {
+      console.log("sucess");
+      message = "Succesful! Your institute has been created.";
+      res.redirect('/doctorslist');
+    } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
+  });
+
+};
+
+//---------------------------------view doctors details after login----------------------------------
+exports.deletedoctor = function(req, res, next){
+  var user = {id: req.params.id};
+  console.log("came to delete");
+  var sql = "DELETE FROM doctors WHERE id = '"+ req.params.id +"'";
+  var query = db.query(sql, function(err,result){
+    if (err) throw err;
+    else {
+      res.redirect('/doctorslist');
+    }
+  });
+};
+
+
 //---------------------------------view institutes details after login----------------------------------
