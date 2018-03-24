@@ -138,7 +138,7 @@ exports.institute = function(req, res){
       {
         message = "Succesful! Your institute has been created.";
         res.render('institute.ejs',{message: message});
-      } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
+      } //<!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
     });
   }
   else
@@ -176,7 +176,7 @@ exports.doctor = function(req, res){
       {
         message = "Succesful! Your doctor has been registered.";
         res.render('doctor.ejs',{message: message});
-      } <!-- NB: success and failure msgs are not displayed fix it in doctor.ejs -->
+      } // <!-- NB: success and failure msgs are not displayed fix it in doctor.ejs -->
     });
   }
   else
@@ -257,7 +257,7 @@ exports.instituteupdate = function(req,res){
       console.log("sucess");
       message = "Succesful! Your institute has been created.";
       res.redirect('/institutelist');
-    } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
+    } // <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
   });
 
 };
@@ -353,7 +353,7 @@ exports.doctorupdate = function(req,res){
       console.log("sucess");
       message = "Succesful! Your institute has been created.";
       res.redirect('/doctorslist');
-    } <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
+    } // <!-- NB: success and failure msgs are not displayed fix it in institute.ejs -->
   });
 
 };
