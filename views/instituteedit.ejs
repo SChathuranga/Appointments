@@ -1,23 +1,120 @@
+<html>
+
+<head>
+	<title>eChanneling - Sign Up</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!-- load fontawesome -->
+	<style>
+		body {
+			padding-top: 80px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="home">eChanneling</a>
+		<nav>
+			<a href="#menu">Menu</a>
+		</nav>
+	</header>
+				<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>
+					Institute Registration
+					</h2>
+
+					<div class="col-md-3"></div>
+					<div class="col-md-6 limiter">
+						<div class="wrap-login100">
+							<!-- LOGIN FORM -->
+							<form action="/institute" method="post">
+								<div class="form-group">
+
+									<input type="text" class="form-control" name="institutename" placeholder="Institute Name">
+								</div>
+								<div class="form-group">
+
+									<input type="text" class="form-control" name="address" placeholder="Address">
+								</div>
+
+								<div class="form-group">
+									<input type="text" class="form-control" name="contact" placeholder="Contact">
+								</div>
+
+								<button type="submit" class="btn btn-warning btn-lg">Register</button>
+							</form>
+							<hr>
+							<p>Already have an account?
+								<a href="/login">
+									<U>Login</U>
+								</a>
+							</p>
+
+						</div>
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+			</section>
 
 
-		<form action="/instituteupdate/<%= id %>" method="post" name="form1">
-			<table width="25%" border="0">
-				<tr>
-					<td>Institute Name</td>
-					<td><input type="text" name="institutename" id="name" value="<%= institutename %>" /></td>
-				</tr>
-				<tr>
-					<td>Address</td>
-					<td><input type="text" name="address" value="<%= address %>" /></td>
-				</tr>
-				<tr>
-					<td>Contact</td>
-					<td><input type="text" name="contact" value="<%= contact %>" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="Submit" name="Submit" value="Edit" /></td>
-				</tr>
-			</table>
-			<input type="hidden" name="_method" value="PUT" />
-		</form>
+
+
+
+
+			<form action="/instituteupdate/<%= id %>" method="post" name="form1">
+				<table width="25%" border="0">
+					<tr>
+						<td>Institute Name</td>
+						<td><input type="text" name="institutename" id="name" value="<%= institutename %>" /></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td><input type="text" name="address" value="<%= address %>" /></td>
+					</tr>
+					<tr>
+						<td>Contact</td>
+						<td><input type="text" name="contact" value="<%= contact %>" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="Submit" name="Submit" value="Edit" /></td>
+					</tr>
+				</table>
+				<input type="hidden" name="_method" value="PUT" />
+			</form>
+	
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
