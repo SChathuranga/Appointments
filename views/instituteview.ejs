@@ -47,17 +47,7 @@
 		</ul>
 	</nav>
 
-
-
-
-
-
-
-
-
-
-
-
+	<!-- Table -->
 	<section>
 		<div class="inner">
 			<div class="col-md-6 limiter">
@@ -89,13 +79,13 @@
 										<td>
 											<input type="button" value="Edit" onclick="document.getElementById('institute_edit<%= user.id %>').click()">
 											<a class="hidden" id="institute_edit<%= user.id %>" href='/instituteedit/<%= user.id %>'>Edit</a>
-											
+
 											<input type="button" value="Delete" onclick="document.getElementById('institute_del_form<%= user.id %>').submit()">
 											<form class="hidden" id="institute_del_form<%= user.id %>" method="post" action="/deleteinstitute/<%= user.id %>" style=""></form>
 										</td>
 									</tr>
-								<% }) %>
-							<% } %>
+									<% }) %>
+										<% } %>
 						</tbody>
 					</table>
 
@@ -103,31 +93,6 @@
 			</div>
 		</div>
 	</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<!-- Footer -->
 	<footer id="footer">
