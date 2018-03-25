@@ -7,7 +7,7 @@
 <script  type="text/javascript" src="js/typeahead.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('input.typeahead').typeahead({
+    $("input[name*='typeahead']").typeahead({
         name: 'countries',
         remote: 'http://localhost:8080/search?key=%QUERY',
         limit: 10
@@ -16,7 +16,7 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('input.doctor').typeahead({
+        $("input[name*='doctor']").typeahead({
             name: 'doctors',
             remote: 'http://localhost:8080/finddoctor?key=%QUERY',
             limit: 10
@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
 
     $(document).ready(function(){
-        $('input.speciality').typeahead({
+        $("input[name*='speciality']").typeahead({
             name: 'specialities',
             remote: 'http://localhost:8080/findbyspeciality?key=%QUERY',
             limit: 10
@@ -84,7 +84,7 @@ $(document).ready(function(){
 </head>
 <body>
    <div class="page-header">
-        <h1>Ajax Search Box using Node and MySQL <small>Codeforgeek Tutorial</small></h1>
+        <h1>eChanneling<small>Find your Match</small></h1>
     </div>
     <div class="bs-example">
 		<label name="institute">Search Institute</label>

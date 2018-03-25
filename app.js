@@ -66,8 +66,8 @@ app.get('/doctoredit/(:id)', user.doctoredit);
 app.post('/doctorupdate/(:id)', user.doctorupdate);
 app.post('/deletedoctor/(:id)', user.deletedoctor);
 app.get('/search', user.search);
-app.get('finddoctor', user.finddoctor);
-app.get('findbyspeciality', user.findbyspeciality);
+app.get('/finddoctor', user.finddoctor);
+app.get('/findbyspeciality', user.findbyspeciality);
 app.get('/echanneling', user.echanneling);
 //app.use(flash());
 //Middleware
