@@ -53,7 +53,7 @@
 			<div class="col-md-6 limiter">
 				<div>
 					<!-- Table -->
-					<h2 style="width: 100%; text-align: center;">View Doctors</h2>
+					<h2>View Doctors</h2>
 
 					<table>
 						<thead>
@@ -89,13 +89,12 @@
 										<td>
 											<%= user.docregid %>
 										</td>
-										<td style="display: flex; flex-direction:row; justify-content: flex-start; align-items:center;">
-											<a style="display:none" id="doctor_edit<%= user.id %>" href='/doctoredit/<%= user.id %>'>Edit</a>
-											<input style="margin-left: 10px; margin-right: 10px;" type="button" value="Edit" onclick="document.getElementById('doctor_edit<%= user.id %>').click()">
-											<input style="margin-left: 10px; margin-right: 10px;" type="button" value="Delete" onclick="confirm('Are you sure you want to delete?') && document.getElementById('delete_form<%= user.id %>').submit()">
+										<td>
+											<input type="button" value="Edit" onclick="document.getElementById('doctor_edit<%= user.id %>').click()">
+											<a class="hidden">Edit</a>
 
-											<form style="display:none" id="delete_form<%= user.id %>" method="post" action="/deletedoctor/<%= user.id %>">
-											</form>
+											<input type="button" value="Delete" onclick="confirm('Are you sure you want to delete?') && document.getElementById('delete_form<%= user.id %>').submit()">
+											<form style="display:none" id="delete_form<%= user.id %>" method="post" action="/deletedoctor/<%= user.id %>"></form>
 										</td>
 									</tr>
 								<% }) %>
