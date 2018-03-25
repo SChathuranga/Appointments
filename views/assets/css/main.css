@@ -652,8 +652,11 @@ table tbody tr {
   table tbody tr:nth-child(2n + 1) {
     background-color: rgba(0, 0, 0, 0.075); }
 table th {
-  color: #555555; }
+  padding-top: 10px;
+  margin-bottom: 10px;
+  color: white; }
 table thead {
+  background: #B44B53;
   border-bottom-color: rgba(0, 0, 0, 0.25); }
 table tfoot {
   border-top-color: rgba(0, 0, 0, 0.25); }
