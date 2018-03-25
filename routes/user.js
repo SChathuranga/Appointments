@@ -83,7 +83,7 @@ exports.dashboard = function(req, res, next){
 exports.logout=function(req,res){
    req.session.destroy(function(err) {
       res.redirect("/login");
-   })
+   });
 };
 //--------------------------------render user details after login--------------------------------
 exports.profile = function(req, res){
@@ -131,7 +131,7 @@ exports.institute = function(req, res){
     var sql = "INSERT INTO `institutes` (`institutename`, `address`, `contact`) VALUES ('"+ institutename +"', '"+ address +"', '"+ contact +"')";
     var query = db.query(sql, function(err, result) {
       if(err){
-        message = "Sign Up failed! Try Again!"
+        message = "Sign Up failed! Try Again!";
         res.render("signup.ejs", {message: message});
       }
       else
@@ -169,7 +169,7 @@ exports.doctor = function(req, res){
     var sql = "INSERT INTO `doctors` (`doctorname`, `address`, `contact`, `email`, `speciality`, `docregid`) VALUES ('"+ doctorname +"', '"+ address +"', '"+ contact +"', '"+ email +"', '"+ speciality +"', '"+ docregid +"')";
     var query = db.query(sql, function(err, result) {
       if(err){
-        message = "Sign Up failed! Try Again!"
+        message = "Sign Up failed! Try Again!";
         res.render("doctor.ejs", {message: message});
       }
       else
@@ -190,11 +190,11 @@ exports.institutelist = function(req, res){
     var query = db.query(sql, function(err, rows, results) {
       if (err) {
         console.log(err);
-				req.flash('error', err)
+				//req.flash('error', err)
 				res.render('instituteview.ejs', {
 					title: 'Institutes List',
 					data: ''
-				})
+				});
 			}
       else {
         console.log(rows);
@@ -214,7 +214,7 @@ exports.instituteedit = function(req, res){
     console.log(req.params.id);
     var sql = "SELECT * FROM institutes WHERE id = '" + req.params.id + "' ";
     var query = db.query(sql, function(err, rows, fields) {
-      if(err) throw err
+      if(err) throw err;
       // if user not found
       if (rows.length <= 0) {
         req.flash('error', 'Institute not found with id = ' + req.params.id);
@@ -249,7 +249,7 @@ exports.instituteupdate = function(req,res){
   var query = db.query(sql, function(err, result) {
     if(err){
       console.log(err);
-      message = "Update failed! Try Again!"
+      message = "Update failed! Try Again!";
       res.redirect("/institutelist");
     }
     else
@@ -280,11 +280,11 @@ exports.doctorslist = function(req, res){
     var query = db.query(sql, function(err, rows, results) {
       if (err) {
         console.log(err);
-				req.flash('error', err)
+				//req.flash('error', err);
 				res.render('doctorview.ejs', {
 					title: 'Doctors List',
 					data: ''
-				})
+				});
 			}
       else {
         console.log(rows);
@@ -345,7 +345,7 @@ exports.doctorupdate = function(req,res){
   var query = db.query(sql, function(err, result) {
     if(err){
       console.log(err);
-      message = "Update failed! Try Again!"
+      message = "Update failed! Try Again!";
       res.redirect("/doctorslist");
     }
     else
@@ -364,7 +364,7 @@ exports.deletedoctor = function(req, res, next){
   console.log("came to delete");
   var sql = "DELETE FROM doctors WHERE id = '"+ req.params.id +"'";
   var query = db.query(sql, function(err,result){
-    if (err) throw err;
+    if (err) throw err
     else {
       res.redirect('/doctorslist');
     }
@@ -374,7 +374,7 @@ exports.deletedoctor = function(req, res, next){
 exports.search = function(req, res){
   var sql = 'SELECT first_name from users where first_name like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
-    if (err) throw err;
+    if (err) throw err
     var data=[];
     for(i=0;i<rows.length;i++)
       {
@@ -387,7 +387,7 @@ exports.search = function(req, res){
 exports.finddoctor = function(req, res){
   var sql = 'SELECT doctorname from doctors where doctorname like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
-    if (err) throw err;
+    if (err) throw err
     var data=[];
     for(i=0;i<rows.length;i++)
       {
@@ -400,7 +400,7 @@ exports.finddoctor = function(req, res){
 exports.findbyspeciality = function(req, res){
   var sql = 'SELECT speciality from doctors where speciality like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
-    if (err) throw err;
+    if (err) throw err
     var data=[];
     for(i=0;i<rows.length;i++)
       {
