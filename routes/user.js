@@ -413,3 +413,19 @@ exports.findbyspeciality = function(req, res){
 exports.echanneling = function(req,res){
   res.render('echanneling');
 };
+
+//----------------------------- real time search - institute -----------------------
+
+exports.findinstitute = function(req, res){
+  var sql = 'SELECT institutename from institute where institutename like "%'+req.query.key+'%"';
+  var query = db.query(sql, function(err,rows){
+    if (err) throw err
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].speciality);
+      }
+      res.end(JSON.stringify(data));
+  });
+};
+
