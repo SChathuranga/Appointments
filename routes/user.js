@@ -429,3 +429,6 @@ exports.findinstitute = function(req, res){
   });
 };
 
+exports.memberhome = function (req, res) {
+  res.render('memberhome');
+}
