@@ -71,6 +71,8 @@ app.get('/findbyspeciality', user.findbyspeciality);
 app.get('/findinstitute', user.findinstitute);
 app.get('/echanneling', user.echanneling);
 app.get('/memberhome', user.memberhome);
+app.get('/myappointments', user.myappointments);
+
 //app.use(flash());
 //Middleware
 app.listen(8080);
