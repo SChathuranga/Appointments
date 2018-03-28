@@ -68,7 +68,9 @@ app.post('/deletedoctor/(:id)', user.deletedoctor);
 app.get('/search', user.search);
 app.get('/finddoctor', user.finddoctor);
 app.get('/findbyspeciality', user.findbyspeciality);
+app.get('/findinstitute', user.findinstitute);
 app.get('/echanneling', user.echanneling);
+app.get('/memberhome', user.memberhome);
 //app.use(flash());
 //Middleware
 app.listen(8080);
