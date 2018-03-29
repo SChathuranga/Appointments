@@ -436,3 +436,7 @@ exports.memberhome = function (req, res) {
 exports.myappointments = function (req, res) {
   res.render('myappointments');
 }
+
+exports.adminhome = function (req, res) {
+  res.render('adminhome');
+}
