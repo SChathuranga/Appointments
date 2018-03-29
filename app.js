@@ -72,6 +72,7 @@ app.get('/findinstitute', user.findinstitute);
 app.get('/echanneling', user.echanneling);
 app.get('/memberhome', user.memberhome);
 app.get('/myappointments', user.myappointments);
+app.get('/adminhome', user.adminhome);
 
 //app.use(flash());
 //Middleware
