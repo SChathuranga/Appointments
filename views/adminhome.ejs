@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>eChanneling Home</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/png" href="images/icons/booked.png" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<style>
+		body {
+			height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
+		.page_container {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.page_body {
+			min-height: 500px;
+			/* height: auto; */
+			display: flex;
+			align-items: stretch;
+		}
+
+		.left_panel {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+
+			flex-grow: 1;
+		}
+
+		.right_panel {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+
+			flex-grow: 4;
+		}
+
+		.menu_button {
+			display: flex;
+
+			height: 70px;
+			background: #B44B53;
+			margin: 3px;
+
+			font-size: 20px;
+			text-align: center;
+
+		}
+
+		.menu_button a {
+			width: 100%;
+			height: 100%;
+		}
+
+		.menu_button:hover {
+			background: rgb(179, 58, 68);
+			cursor: pointer;
+
+			box-shadow: 2px 2px;
+		}
+
+		.hnv_align_content {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page_container">
+		<div>
+			<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">eChanneling</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+			<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li>
+						<a href="index">Home</a>
+					</li>
+					<li>
+						<a href="signup">Create Account</a>
+					</li>
+					<li>
+						<a href="login">Login</a>
+					</li>
+					<li>
+						<a href="institute">Institute</a>
+					</li>
+					<li>
+						<a href="doctor">Register Doctor</a>
+					</li>
+					<li>
+						<a href="institutelist">Institue View</a>
+					</li>
+					<li>
+						<a href="doctorslist">Doctors View</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+
+		<div class="page_body" style="flex-grow: 1">
+			<!-- Left panel -->
+			<div class="left_panel">
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Manage Institute</span>
+					</a>
+				</div>
+
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Add Institute</span>
+					</a>
+				</div>
+
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Manage Doctor</span>
+					</a>
+				</div>
+
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Add Doctors</span>
+					</a>
+				</div>
+
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Manage Users</span>
+					</a>
+				</div>
+
+				<div class="menu_button">
+					<a href="#" class="hnv_align_content">
+						<span>Something</span>
+					</a>
+				</div>
+			</div>
+
+			<!-- Right panel -->
+			<div class="right_panel">
+
+			</div>
+		</div>
+
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<div class="content">
+					<section>
+						<h3>Accumsan montes viverra</h3>
+						<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare
+							mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in
+							adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
+							volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+					</section>
+					<section>
+						<h4>Sem turpis amet semper</h4>
+						<ul class="alt">
+							<li>
+								<a href="#">Dolor pulvinar sed etiam.</a>
+							</li>
+							<li>
+								<a href="#">Etiam vel lorem sed amet.</a>
+							</li>
+							<li>
+								<a href="#">Felis enim feugiat viverra.</a>
+							</li>
+							<li>
+								<a href="#">Dolor pulvinar magna etiam.</a>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Magna sed ipsum</h4>
+						<ul class="plain">
+							<li>
+								<a href="#">
+									<i class="icon fa-twitter">&nbsp;</i>Twitter</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon fa-facebook">&nbsp;</i>Facebook</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon fa-instagram">&nbsp;</i>Instagram</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon fa-github">&nbsp;</i>Github</a>
+							</li>
+						</ul>
+					</section>
+				</div>
+				<div class="copyright">
+					&copy; e-Channeling by
+					<a href="https://unsplash.co">Innoviax Inc</a>.
+				</div>
+			</div>
+		</footer>
+	</div>
+
+</body>
+
+</html>
