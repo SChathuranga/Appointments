@@ -48,7 +48,7 @@ exports.login = function(req, res){
             req.session.userId = results[0].id;
             req.session.user = results[0];
             console.log(results[0].id);
-            res.redirect('/home/dashboard');
+            res.redirect('/memberhome');
          }
          else{
             message = 'Wrong Credentials.';
@@ -431,12 +431,44 @@ exports.findinstitute = function(req, res){
 
 exports.memberhome = function (req, res) {
   res.render('memberhome');
-}
+};
 
 exports.myappointments = function (req, res) {
   res.render('myappointments');
-}
+};
 
 exports.adminhome = function (req, res) {
   res.render('adminhome');
-}
+};
+
+exports.adminlogin = function(req, res){
+  var message = "";
+  var sess = req.session;
+
+  if (req.method == "POST") {
+    var post = req.body;
+    var name = post.username;
+    var pass = post.password;
+
+    var sql = "SELECT id, first_name, last_name, user_name FROM `users` WHERE `user_name`='" + name + "' and password = '" + pass + "'";
+    db.query(sql, function(err, results) {
+      if (results.length) {
+        req.session.userId = results[0].id;
+        req.session.user = results[0];
+        console.log(results[0].id);
+        res.redirect("/adminhome");
+      } else {
+        message = "Wrong Credentials.";
+        res.render("login.ejs", { message: message });
+      }
+    });
+  } else {
+    res.render("adminlogin", { message: message });
+  }
+};
+
+exports.adminlogout = function(req, res) {
+  req.session.destroy(function(err) {
+    res.redirect("/adminlogin");
+  });
+};

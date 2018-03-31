@@ -51,7 +51,7 @@ app.post('/signup', user.signup);//call for signup post
 app.get('/login', user.login);//call for login page
 app.post('/login', user.login);//call for login post
 app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
-app.get('/home/logout', user.logout);//call for logout
+app.get('/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
 app.get('/institute', user.institute);//call for institute
 app.post('/institute', user.institute);//call for institute post
@@ -73,6 +73,7 @@ app.get('/echanneling', user.echanneling);
 app.get('/memberhome', user.memberhome);
 app.get('/myappointments', user.myappointments);
 app.get('/adminhome', user.adminhome);
+app.get('/adminlogout', user.adminlogout);//call for logout
 
 //app.use(flash());
 //Middleware
