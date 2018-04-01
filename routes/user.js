@@ -22,9 +22,16 @@ exports.signup = function(req, res){
       var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
 
       var query = db.query(sql, function(err, result) {
-
-         message = "Succesfully! Your account has been created.";
+        if(err)
+        {
+          message = "Account creation failed!";
+          res.render("signup.ejs", { message: message });
+        }
+        else
+        {
+         message = "Succesful! Your account has been created!";
          res.render('signup.ejs',{message: message});
+        }
       });
 
    } else {
