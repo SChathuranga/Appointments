@@ -430,11 +430,31 @@ exports.findinstitute = function(req, res){
 };
 
 exports.memberhome = function (req, res) {
-  res.render('memberhome');
+  res.render("memberhome1.ejs", { title: "Channel List", data: "" });
 };
 
 exports.myappointments = function (req, res) {
-  res.render('myappointments');
+  var message = "";
+  var userId = req.session.userId;
+
+  var sql = "SELECT appid, userId, doctorname, institutename, speciality from myappointments WHERE 'userId' = '"+userId+"' ";
+  db.query(sql, function(err, rows, results){
+    if (err) {
+      console.log(err);
+      //req.flash('error', err);
+      res.render("myappointments.ejs", {
+        title: "Appointments List",
+        data: ""
+      });
+    } else {
+      console.log(rows);
+      // render to views/user/list.ejs template file
+      res.render("myappointments.ejs", {
+        title: "Appointments List",
+        data: rows
+      });
+    }
+  });
 };
 
 exports.adminhome = function (req, res) {
@@ -471,4 +491,48 @@ exports.adminlogout = function(req, res) {
   req.session.destroy(function(err) {
     res.redirect("/adminlogin");
   });
+};
+
+exports.deleteappointment = function(req, res, next) {
+  var user = { id: req.params.appId };
+  console.log("came to delete");
+  var sql = "DELETE FROM myappointments WHERE appId = '" + req.params.appId + "'";
+  var query = db.query(sql, function(err, result) {
+    if (err) throw err;
+    else {
+      res.redirect("/myappointments");
+    }
+  });
+};
+
+exports.echannelingsearch = function(req, res){
+  //code here
+  if (req.method == "POST") {
+    var post = req.body;
+    var institute = req.body.institute;
+    var doctor = req.body.doctor;
+    var speciality = req.body.speciality;
+
+    //INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "'
+    var sql = "SELECT  INTO `doctors` (`doctorname`, `address`, `contact`, `email`, `speciality`, `docregid`) VALUES ('" + doctorname + "', '" + address + "', '" + contact + "', '" + email + "', '" + speciality + "', '" + docregid + "')";
+    db.query(sql, function(err, rows, results) {
+      if (err) {
+        console.log(err);
+        //req.flash('error', err);
+        res.render("memberhome.ejs", {
+          title: "Appointments List",
+          data: ""
+        });
+      } else {
+        console.log(rows);
+        // render to views/user/list.ejs template file
+        res.render("memberhome.ejs", {
+          title: "Appointments List",
+          data: rows
+        });
+      }
+    });
+  } else {
+    res.redirect("/memberhome");
+  }
 };

@@ -72,8 +72,10 @@ app.get('/findinstitute', user.findinstitute);
 app.get('/echanneling', user.echanneling);
 app.get('/memberhome', user.memberhome);
 app.get('/myappointments', user.myappointments);
+app.get("/deleteappointment", user.deleteappointment);
 app.get('/adminhome', user.adminhome);
 app.get('/adminlogout', user.adminlogout);//call for logout
+app.post('/echannelingsearch', user.echannelingsearch);
 
 //app.use(flash());
 //Middleware

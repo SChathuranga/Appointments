@@ -79,7 +79,7 @@
 											<a class="hidden">Edit</a>
 
 											<input type="button" value="Delete" onclick="confirm('Are you sure you want to delete?') && document.getElementById('delete_form<%= user.id %>').submit()">
-											<form style="display:none" id="delete_form<%= user.id %>" method="post" action="/deletedoctor/<%= user.id %>"></form>
+											<form style="display:none" id="delete_form<%= user.id,  %>" method="post" action="/deletedoctor/<%= user.id %>"></form>
 										</td>
 									</tr>
 								<% }) %>
