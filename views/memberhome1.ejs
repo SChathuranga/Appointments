@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>eChanneling Home</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/png" href="images/icons/booked.png" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+	<style>
+		.margin {
+			margin: 10px;
+		}
+
+		.base_size {
+			width: 500px;
+		}
+
+		form.search input[type=text] {
+			padding: 10px;
+			font-size: 20px;
+			border: 1px solid grey;
+			float: left;
+			width: 80%;
+			background: #f1f1f1;
+		}
+
+		form.search button {
+			float: left;
+			width: 20%;
+			background: #B44B53;
+			color: white;
+			font-size: 30px;
+			border: 1px solid grey;
+			border-left: none;
+			cursor: pointer;
+		}
+
+		form.search::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		form.search button:hover i {
+			color: white;
+		}
+
+		[type="date"] {
+			background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+		}
+
+		[type="date"]::-webkit-inner-spin-button {
+			display: none;
+		}
+
+		[type="date"]::-webkit-calendar-picker-indicator {
+			opacity: 0;
+		}
+
+		/* custom styles */
+
+		label {
+			display: block;
+		}
+
+		.datetime {
+			border: 1px solid rgba(0, 0, 0, 0.25);
+			border-radius: 4px;
+			background-color: rgba(0, 0, 0, 0.075);
+			box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+			width: 100%;
+			height: 3.25rem;
+
+			padding: 0 1rem;
+			text-decoration: none;
+			white-space: nowrap;
+			font-weight: 600;
+		}
+		.bs-example{
+	font-family: sans-serif;
+	position: relative;
+	margin: 50px;
+}
+.typeahead, .tt-query, .tt-hint {
+	border: 2px solid #CCCCCC;
+	border-radius: 8px;
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+	width: 396px;
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 422px;
+}
+.tt-suggestion {
+	font-size: 24px;
+	line-height: 24px;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/typeahead.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("input[name*='institute']").typeahead({
+				name: 'countries',
+				remote: 'http://localhost:8080/search?key=%QUERY',
+				limit: 10
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("input[name*='doctor']").typeahead({
+				name: 'doctors',
+				remote: 'http://localhost:8080/finddoctor?key=%QUERY',
+				limit: 10
+			});
+		});
+
+		$(document).ready(function () {
+			$("input[name*='speciality']").typeahead({
+				name: 'specialities',
+				remote: 'http://localhost:8080/findbyspeciality?key=%QUERY',
+				limit: 10
+			});
+		});
+	</script>
+
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="index.html">eChanneling</a>
+		<nav>
+			<a href="#menu">Menu</a>
+		</nav>
+	</header>
+
+	<!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li>
+				<a href="/myappointments">My Appointments</a>
+			</li>
+			<li>
+				<a href="/logout">Logout</a>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- Table -->
+	<section>
+		<div class="inner">
+			<div class="col-md-6 limiter">
+
+				<!-- Page Body -->
+				<div style="display: flex; flex-direction: column; align-items: center;">
+					<!-- Header -->
+					<h2>e - Channeling</h2>
+
+					<!-- Search Box -->
+					<form class="search" action="/echannelingsearch" method="POST" style="width: 60%">
+						<input type="text" name="search" placeholder="Search...">
+						<button type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+
+					<!-- Member Form -->
+					<div style="display: flex; justify-content: space-around; width: 80%;">
+						<div style="display: flex; flex-direction: column;">
+							<div class="form-group margin base_size">
+								<input type="text" name="institute" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter Institute Name">
+							</div>
+
+							<div class="form-group margin base_size">
+								<input type="text" name="doctor" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter Doctor's Name">
+							</div>
+						</div>
+
+						<div style="display: flex; flex-direction: column;">
+							<div class="form-group margin base_size">
+								<input type="text" name="speciality" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter Speciality">
+							</div>
+
+						</div>
+					</div>
+					</form>
+					<br><hr>
+					<h3>Results</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>Doctor Name</th>
+								<th>Institute Name</th>
+								<th>Speciality</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% if (data) { %>
+								<% data.forEach(function(user){ %>
+									<tr>
+										<td>
+											<%= user.doctorname %>
+										</td>
+										<td>
+											<%= user.institutename %>
+										</td>
+										<td>
+											<%= user.speciality %>
+										</td>
+										<td>
+											<input type="button" value="Schedule Appointment" onclick="confirm('Are you sure?') && document.getElementById('delete_form<%= user.doctorname, user.institutename, user.speciality %>').submit()">
+											<form style="display:none" id="delete_form<%= user.doctorname, user.institutename, user.speciality %>" method="post" action="/scheduleappointment/<%= user.doctorname %>"></form>
+										</td>
+									</tr>
+									<% }) %>
+										<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<div class="content">
+				<section>
+					<h3>Accumsan montes viverra</h3>
+					<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare
+						mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in
+						adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
+						volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+				</section>
+				<section>
+					<h4>Sem turpis amet semper</h4>
+					<ul class="alt">
+						<li>
+							<a href="#">Dolor pulvinar sed etiam.</a>
+						</li>
+						<li>
+							<a href="#">Etiam vel lorem sed amet.</a>
+						</li>
+						<li>
+							<a href="#">Felis enim feugiat viverra.</a>
+						</li>
+						<li>
+							<a href="#">Dolor pulvinar magna etiam.</a>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Magna sed ipsum</h4>
+					<ul class="plain">
+						<li>
+							<a href="#">
+								<i class="icon fa-twitter">&nbsp;</i>Twitter</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="icon fa-facebook">&nbsp;</i>Facebook</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="icon fa-instagram">&nbsp;</i>Instagram</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="icon fa-github">&nbsp;</i>Github</a>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<div class="copyright">
+				&copy; e-Channeling by
+				<a href="https://unsplash.co">Innoviax Inc</a>.
+			</div>
+		</div>
+	</footer>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

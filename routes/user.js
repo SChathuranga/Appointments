@@ -536,3 +536,24 @@ exports.echannelingsearch = function(req, res){
     res.redirect("/memberhome");
   }
 };
+
+exports.allappointments = function(req, res) {
+  var sql = "SELECT * FROM myappointments ORDER BY appid DESC";
+  var query = db.query(sql, function(err, rows, results) {
+    if (err) {
+      console.log(err);
+      //req.flash('error', err);
+      res.render("allappointments.ejs", {
+        title: "Appointments List",
+        data: ""
+      });
+    } else {
+      console.log(rows);
+      // render to views/user/list.ejs template file
+      res.render("allappointments.ejs", {
+        title: "Appointments List",
+        data: rows
+      });
+    }
+  });
+};

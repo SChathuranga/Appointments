@@ -76,6 +76,7 @@ app.get("/deleteappointment", user.deleteappointment);
 app.get('/adminhome', user.adminhome);
 app.get('/adminlogout', user.adminlogout);//call for logout
 app.post('/echannelingsearch', user.echannelingsearch);
+app.get('/allappointments', user.allappointments);
 
 //app.use(flash());
 //Middleware
