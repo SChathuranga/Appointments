@@ -370,7 +370,7 @@ exports.deletedoctor = function(req, res, next){
     }
   });
 };
-
+// ------------------------------------------- find doctor by institute --------------------------------
 exports.search = function(req, res){
   var sql = 'SELECT first_name from users where first_name like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
@@ -383,7 +383,7 @@ exports.search = function(req, res){
       res.end(JSON.stringify(data));
   });
 };
-
+// ------------------------------------------- find doctor by name --------------------------------
 exports.finddoctor = function(req, res){
   var sql = 'SELECT doctorname from doctors where doctorname like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
@@ -396,7 +396,7 @@ exports.finddoctor = function(req, res){
       res.end(JSON.stringify(data));
   });
 };
-
+// ------------------------------------------- find doctor by specialized field --------------------------------
 exports.findbyspeciality = function(req, res){
   var sql = 'SELECT speciality from doctors where speciality like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
@@ -428,11 +428,11 @@ exports.findinstitute = function(req, res){
       res.end(JSON.stringify(data));
   });
 };
-
+// -------------------------------------------- member home navigation -------------------------------------
 exports.memberhome = function (req, res) {
   res.render("memberhome1.ejs", { title: "Channel List", data: "" });
 };
-
+// ------------------------------------------------ myappointments navigation -----------------------------------
 exports.myappointments = function (req, res) {
   var message = "";
   var userId = req.session.userId;
@@ -456,11 +456,11 @@ exports.myappointments = function (req, res) {
     }
   });
 };
-
+// ----------------------------------------------- admin Home navigation -----------------------------------
 exports.adminhome = function (req, res) {
   res.render('adminhome');
 };
-
+// ----------------------------------------------------- admin login -------------------------------------
 exports.adminlogin = function(req, res){
   var message = "";
   var sess = req.session;
@@ -469,30 +469,30 @@ exports.adminlogin = function(req, res){
     var post = req.body;
     var name = post.username;
     var pass = post.password;
-
-    var sql = "SELECT id, first_name, last_name, user_name FROM `users` WHERE `user_name`='" + name + "' and password = '" + pass + "'";
+    console.log('came here to admin login post');
+    var sql = "SELECT adminid, username FROM `adminusers` WHERE `username`='" + name + "' and password = '" + pass + "'";
     db.query(sql, function(err, results) {
       if (results.length) {
-        req.session.userId = results[0].id;
-        req.session.user = results[0];
-        console.log(results[0].id);
+        req.session.adminId = results[0].adminid;
+        req.session.admin = results[0];
+        console.log(results[0].adminid);
         res.redirect("/adminhome");
       } else {
         message = "Wrong Credentials.";
-        res.render("login.ejs", { message: message });
+        res.render("adminlogin.ejs", { message: message });
       }
     });
   } else {
     res.render("adminlogin", { message: message });
   }
 };
-
+//------------------------------------------- admin logout ----------------------------------------
 exports.adminlogout = function(req, res) {
   req.session.destroy(function(err) {
     res.redirect("/adminlogin");
   });
 };
-
+//--------------------------------------------- delete appointment from my appointments -----------------------
 exports.deleteappointment = function(req, res, next) {
   var user = { id: req.params.appId };
   console.log("came to delete");
@@ -504,7 +504,7 @@ exports.deleteappointment = function(req, res, next) {
     }
   });
 };
-
+//------------------------------------------ echanneling -------------------------------------
 exports.echannelingsearch = function(req, res){
   //code here
   if (req.method == "POST") {
@@ -536,7 +536,7 @@ exports.echannelingsearch = function(req, res){
     res.redirect("/memberhome");
   }
 };
-
+//---------------------------------- admin - view all appointments -----------------------------------
 exports.allappointments = function(req, res) {
   var sql = "SELECT * FROM myappointments ORDER BY appid DESC";
   var query = db.query(sql, function(err, rows, results) {
