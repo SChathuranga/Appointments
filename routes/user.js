@@ -121,11 +121,17 @@ exports.editprofile=function(req,res){
 };
 //---------------------------------edit users details after login----------------------------------
 exports.institute = function(req, res){
-  /*var userId = req.session.userId;
+  var userId = req.session.adminId;
   if(userId == null){
-    res.redirect("/login");
+    res.redirect("/adminlogin");
     return;
-  }*/
+  }
+
+  /*var sql = "SELECT * FROM `adminusers` WHERE `adminid`='" + userId + "'";
+
+   db.query(sql, function(err, results) {
+     res.render("dashboard.ejs", { user: user });
+   });*/
 
   if(req.method == "POST")
   {
@@ -156,11 +162,11 @@ exports.institute = function(req, res){
 
 //---------------------------------add doctor details after login----------------------------------
 exports.doctor = function(req, res){
-  /*var userId = req.session.userId;
-  if(userId == null){
-    res.redirect("/login");
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
     return;
-  }*/
+  }
 
   if(req.method == "POST")
   {
@@ -193,7 +199,13 @@ exports.doctor = function(req, res){
 };
 //---------------------------------view institutes details after login----------------------------------
 exports.institutelist = function(req, res){
-    var sql = "SELECT * FROM institutes ORDER BY id DESC";
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
+
+  var sql = "SELECT * FROM institutes ORDER BY id DESC";
     var query = db.query(sql, function(err, rows, results) {
       if (err) {
         console.log(err);
@@ -216,7 +228,11 @@ exports.institutelist = function(req, res){
 //--------------------------------edit institute navigation ----------------------------------------
 
 exports.instituteedit = function(req, res){
-
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   if(req.method == "GET") {
     console.log(req.params.id);
     var sql = "SELECT * FROM institutes WHERE id = '" + req.params.id + "' ";
@@ -245,6 +261,11 @@ exports.instituteedit = function(req, res){
 };
 //---------------------------------update institute details after login----------------------------------
 exports.instituteupdate = function(req,res){
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   console.log("came to update part");
   var post = req.body;
   var institutename= req.body.institutename;
@@ -271,6 +292,11 @@ exports.instituteupdate = function(req,res){
 
 //---------------------------------delete institute----------------------------------
 exports.deleteinstitute = function(req, res, next){
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   var user = {id: req.params.id};
   console.log("came to delete");
   var sql = "DELETE FROM institutes WHERE id = '"+ req.params.id +"'";
@@ -283,6 +309,11 @@ exports.deleteinstitute = function(req, res, next){
 };
 //---------------------------------view doctors details after login----------------------------------
 exports.doctorslist = function(req, res){
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
     var sql = "SELECT * FROM doctors ORDER BY id DESC";
     var query = db.query(sql, function(err, rows, results) {
       if (err) {
@@ -306,7 +337,11 @@ exports.doctorslist = function(req, res){
 
 //--------------------------------edit doctor edit navigation ----------------------------------------
 exports.doctoredit = function(req, res){
-
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   if(req.method == "GET") {
     console.log(req.params.id);
     var sql = "SELECT * FROM doctors WHERE id = '" + req.params.id + "' ";
@@ -338,6 +373,11 @@ exports.doctoredit = function(req, res){
 };
 //---------------------------------update doctor details----------------------------------
 exports.doctorupdate = function(req,res){
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   console.log("came to update part");
   var post = req.body;
   var doctorname= req.body.doctorname;
@@ -367,6 +407,11 @@ exports.doctorupdate = function(req,res){
 
 //---------------------------------delete doctor----------------------------------
 exports.deletedoctor = function(req, res, next){
+  var userId = req.session.adminId;
+  if (userId == null) {
+    res.redirect("/adminlogin");
+    return;
+  }
   var user = {id: req.params.id};
   console.log("came to delete");
   var sql = "DELETE FROM doctors WHERE id = '"+ req.params.id +"'";
@@ -477,13 +522,13 @@ exports.adminlogin = function(req, res){
     var name = post.username;
     var pass = post.password;
     console.log('came here to admin login post');
-    var sql = "SELECT adminid, username FROM `adminusers` WHERE `username`='" + name + "' and password = '" + pass + "'";
+    var sql = "SELECT adminid, username, admintype FROM `adminusers` WHERE `username`='" + name + "' and password = '" + pass + "'";
     db.query(sql, function(err, results) {
       if (results.length) {
         req.session.adminId = results[0].adminid;
         req.session.admin = results[0];
         console.log(results[0].adminid);
-        res.redirect("/adminhome");
+        res.render("adminhome", {username: req.session.admin.username});
       } else {
         message = "Wrong Credentials.";
         res.render("adminlogin.ejs", { message: message });

@@ -112,11 +112,11 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i> <%= username %> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li class="divider"></li>
-                            <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="adminlogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -140,6 +140,7 @@
                             <li>
                                 <a href="adminhome" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
+                            <% if (username==="superadmin") { %>
                             <li>
                                 <a href="institute"><i class="fa fa-edit fa-fw"></i> Add Institute<span class="fa arrow"></span></a>
                                 <!-- /.nav-second-level -->
@@ -147,6 +148,8 @@
                             <li>
                                 <a href="institutelist"><i class="fa fa-table fa-fw"></i> Manage Institute</a>
                             </li>
+
+                            <% } %>
                             <li>
                                 <a href="doctor"><i class="fa fa-edit fa-fw"></i> Add Doctor</a>
                             </li>
