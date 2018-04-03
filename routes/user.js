@@ -424,13 +424,13 @@ exports.deletedoctor = function(req, res, next){
 };
 // ------------------------------------------- find doctor by institute --------------------------------
 exports.search = function(req, res){
-  var sql = 'SELECT first_name from users where first_name like "%'+req.query.key+'%"';
+  var sql = 'SELECT institutename from institutes where institutename like "%'+req.query.key+'%"';
   var query = db.query(sql, function(err,rows){
     if (err) throw err
     var data=[];
     for(i=0;i<rows.length;i++)
       {
-        data.push(rows[i].first_name);
+        data.push(rows[i].institutename);
       }
       res.end(JSON.stringify(data));
   });
@@ -565,8 +565,36 @@ exports.echannelingsearch = function(req, res){
     var doctor = req.body.doctor;
     var speciality = req.body.speciality;
 
+    var sqlInstitute = "SELECT id from institutes where institutename = '"+ institute +"'";
+    db.query(sql, function(err, rows, results){
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        var sqlscript = "SELECT doctorname, instituteid, speciality from doctors where doctorname = '" + doctor + "' and speciality = '" + speciality + "' and instituteid = '" + rows[0].instituteid + "' inner join institutes on doctors.instituteid = institutes.id";
+        db.query(sql, function(err, rows, results) {
+          if (err) {
+            console.log(err);
+            //req.flash('error', err);
+            res.render("userhome.ejs", {
+              title: "Appointments List",
+              data: ""
+            });
+          } else {
+            console.log(rows);
+            res.render("userhome.ejs", {
+              title: "Appointments List",
+              data: rows
+            });
+          }
+        });
+      }
+    });
+    var sqlscript = "SELECT doctorname, instituteid, speciality from doctors where doctorname = '"+ doctor +"' and speciality = '"+ speciality +"' and instituteid = '" + institute +"' inner join institutes on doctors.instituteid = institutes.id";
     //INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "'
-    var sql = "SELECT  INTO `doctors` (`doctorname`, `address`, `contact`, `email`, `speciality`, `docregid`) VALUES ('" + doctorname + "', '" + address + "', '" + contact + "', '" + email + "', '" + speciality + "', '" + docregid + "')";
+    //var sql = "SELECT  INTO `doctors` (`doctorname`, `address`, `contact`, `email`, `speciality`, `docregid`) VALUES ('" + doctorname + "', '" + address + "', '" + contact + "', '" + email + "', '" + speciality + "', '" + docregid + "')";
     db.query(sql, function(err, rows, results) {
       if (err) {
         console.log(err);

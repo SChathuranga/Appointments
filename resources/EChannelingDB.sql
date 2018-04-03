@@ -54,3 +54,8 @@ CREATE TABLE `echannelingdb`.`myappointments` (
     REFERENCES `echannelingdb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+select * from institutes;
+select * from doctors;
+
+SELECT doctorname, instituteid, speciality from doctors where doctorname="Chathuranga" and speciality="Cardiology" outer join doctors.instituteid = institutes.id

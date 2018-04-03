@@ -120,7 +120,7 @@
             </li>
         </ul>
     </nav>
-    <form method="POST" action="/echanneling">
+    <form method="POST" action="/echannelingsearch">
         <div class="page-header">
             <h1>E - Channeling</h1>
         </div>
@@ -139,7 +139,7 @@
         </div>
         <div class="bs-example">
             <button type="submit">
-                <i class="fa fa-search">Search</i>
+                Search Appointments  <i class="fa fa-search"></i>
             </button>
         </div>
     </form>
@@ -168,13 +168,13 @@
                                             <%= user.institutename %>
                                         </td>
                                         <td>
-                                            <%= user.address %>
+                                            <%= user.doctorname %>
                                         </td>
                                         <td>
-                                            <%= user.contact %>
+                                            <%= user.speciality %>
                                         </td>
                                         <td>
-                                            <input type="button" value="Delete" onclick="document.getElementById('institute_del_form<%= user.id %>').submit()">
+                                            <input type="button" value="Make Appointment" onclick="document.getElementById('institute_del_form<%= user.id %>').submit()">
                                             <form class="hidden" id="institute_del_form<%= user.id %>" method="post" action="/deleteinstitute/<%= user.id %>" style=""></form>
                                         </td>
                                     </tr>
