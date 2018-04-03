@@ -482,7 +482,7 @@ exports.findinstitute = function(req, res){
 };
 // -------------------------------------------- member home navigation -------------------------------------
 exports.memberhome = function (req, res) {
-  res.render("memberhome1.ejs", { title: "Channel List", data: "" });
+  res.render("userhome.ejs", { title: "Channel List", data: "" });
 };
 // ------------------------------------------------ myappointments navigation -----------------------------------
 exports.myappointments = function (req, res) {

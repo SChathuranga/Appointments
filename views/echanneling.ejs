@@ -7,7 +7,7 @@
 <script  type="text/javascript" src="js/typeahead.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $("input[name*='typeahead']").typeahead({
+    $("input[name*='institute']").typeahead({
         name: 'countries',
         remote: 'http://localhost:8080/search?key=%QUERY',
         limit: 10
@@ -88,7 +88,7 @@ $(document).ready(function(){
     </div>
     <div class="bs-example">
 		<label name="institute">Search Institute</label>
-        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query">
+        <input type="text" name="institute" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query">
 	</div>
 	<div class="bs-example">
 			<label name="Doctor">Search Doctor</label>
