@@ -7,9 +7,7 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
 	<link rel="stylesheet" href="assets/css/main.css" />
-
 </head>
 
 <body>
@@ -54,24 +52,24 @@
 					<div class="col-md-6 limiter">
 						<div class="wrap-login100">
 							<!-- LOGIN FORM -->
-							<form action="/signup" method="post">
+							<form action="/signup" method="post" id="signupId">
 								<div class="form-group">
 
-									<input type="text" class="form-control" name="first_name" placeholder="First Name">
+									<input type="text" class="form-control" name="first_name" placeholder="First Name" required>
 								</div>
 								<div class="form-group">
 
-									<input type="text" class="form-control" name="last_name" placeholder="Last Name">
+									<input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
 								</div>
 
 								<div class="form-group">
-									<input type="text" class="form-control" name="mob_no" placeholder="Mobile Number">
+									<input type="text" class="form-control" name="mob_no" placeholder="Mobile Number" min="10" maxlength="10" required>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="user_name" placeholder="Username">
+									<input type="text" class="form-control" name="user_name" placeholder="Username" required>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" name="password" placeholder="Password">
+									<input type="password" class="form-control" name="password" placeholder="Password" required>
 								</div>
 								<button type="submit" class="btn btn-warning btn-lg">Signup</button>
 							</form>
@@ -98,6 +96,66 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+<!-- ***********************************************************************************   -->
+
+<script>
+$(document).ready(function() {
+    // Initialize the date picker for the original due date field
+
+
+    $('#signupId')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'first_name': {
+                    // The task is placed inside a .col-xs-6 element
+                    row: '.col-xs-6',
+                    validators: {
+                        notEmpty: {
+                            message: 'The Name is required'
+                        }
+                    }
+                }
+            }
+        })
+
+        // Add button click handler
+        .on('click', '.addButton', function() {
+            var $template = $('#signupId'),
+                $clone    = $template
+                                .clone()
+                                .removeClass('hide')
+                                .removeAttr('id')
+                                .insertBefore($template);
+
+            // Add new fields
+            // Note that we DO NOT need to pass the set of validators
+            // because the new field has the same name with the original one
+            // which its validators are already set
+            $('#signupId')
+                .formValidation('addField', $clone.find('[name="task[]"]'))
+        })
+
+        // Remove button click handler
+        .on('click', '.removeButton', function() {
+            var $row = $(this).closest('.form-group');
+
+            // Remove fields
+            $('#signupId')
+                .formValidation('removeField', $row.find('[name=""]'))
+
+            // Remove element containing the fields
+            $row.remove();
+        });
+});
+</script>
+			<!-- ********************************************  -->
 </body>
 
 </html>

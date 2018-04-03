@@ -37,32 +37,32 @@
 					<form action="/doctorupdate/<%= id %>" method="post" name="form1"></form>
 						<div class="form-group">
 							Institute Name
-							<input type="text" name="doctorname" id="name" value="<%= doctorname %>" />
+							<input type="text" name="doctorname" id="name" value="<%= doctorname %>" required />
 						</div>
 
 						<div class="form-group">
 							Address
-							<input type="text" name="address" value="<%= address %>" />
+							<input type="text" name="address" value="<%= address %>" required />
 						</div>
 
 						<div class="form-group">
 							Contact
-							<input type="text" name="contact" value="<%= contact %>" />
+							<input type="text" name="contact" value="<%= contact %>" required/>
 						</div>
 
 						<div class="form-group">
 							Email
-							<input type="text" name="email" value="<%= email %>" />
+							<input type="text" name="email" value="<%= email %>" required />
 						</div>
 
 						<div class="form-group">
 							Speciality
-							<input type="text" name="speciality" value="<%= speciality %>" />
+							<input type="text" name="speciality" value="<%= speciality %>"  required/>
 						</div>
 
 						<div class="form-group">
 							Doctor's Registration #
-							<input type="text" name="docregid" value="<%= docregid %>" />
+							<input type="text" name="docregid" value="<%= docregid %>" required/>
 						</div>
 
 						<input type="submit" class="btn btn-warning btn-lg" name="Submit" value="Edit" />

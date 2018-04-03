@@ -37,19 +37,19 @@
 					<form action="/instituteupdate/<%= id %>" method="post">
 						<div class="form-group">
 							Name
-							<input type="text" class="form-control" name="institutename" id="name" value="<%= institutename %>" />
+							<input type="text" class="form-control" name="institutename" id="name" value="<%= institutename %>" required/>
 						</div>
 						<div class="form-group">
 							Address
-							<input type="text" class="form-control" name="address" value="<%= address %>" />
+							<input type="text" class="form-control" name="address" value="<%= address %>"  required/>
 						</div>
 
 						<div class="form-group">
 							Contact
-							<input type="text" class="form-control" name="contact" value="<%= contact %>" />
+							<input type="text" class="form-control" name="contact" value="<%= contact %>" required/>
 						</div>
 
-						<input type="Submit" class="btn btn-warning btn-lg" name="Submit" value="Edit" />
+						<input type="Submit" class="btn btn-warning btn-lg" name="Submit" value="Edit" required/>
 					</form>
 				</div>
 			</div>
