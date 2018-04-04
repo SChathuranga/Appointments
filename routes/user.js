@@ -573,7 +573,7 @@ exports.echannelingsearch = function(req, res){
       }
       else
       {
-        var sqlscript = "SELECT doctorname, instituteid, speciality from doctors where doctorname = '" + doctor + "' and speciality = '" + speciality + "' and instituteid = '" + rows[0].instituteid + "' inner join institutes on doctors.instituteid = institutes.id";
+        var sqlscript = "select doctors.doctorname, doctors.speciality from doctors join institutes on doctors.instituteid=institutes.id where doctors.doctorname='"+ doctor +"' and doctors.speciality='"+ speciality +"' and doctors.instituteid='"+ rows[0].id +"'";
         db.query(sql, function(err, rows, results) {
           if (err) {
             console.log(err);
